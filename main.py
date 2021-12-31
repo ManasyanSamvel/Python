@@ -3,33 +3,32 @@ import random
 def return_rand_word():
     languages = ["Python", "Go", "JavaScript", "PHP", "Swift", "Flask"]
 
-    return languages[random.randrange(len(languages))].lower()
+    return languages[random.randrange(len(languages))]
 
 
 print(return_rand_word())
-
 num = 3
 
-def check(word,s):
-    if word == s:
-        print("You Won")
+def check(word,s,num):
+    if num == 1:
+        print("You lost")
     else:
-        if s in word:
-            print("Correct letter, Countine ")
-            check(word,s)
+        if word == s:
+            print("You Won")
         else:
-            print(f"Wrong, you have {num} chanses")
+            if s in word:
+                print("Correct letter, Countine ")
+                start(num)
+            else:
+                num-=1
+                print(f"Wrong, You have {num} chanses")
+                start(num)
             
-        
 
-
-
-def start():
+def start(num):
+    s = input("Insert letter or word ")
     word = return_rand_word()
-    print(f"You have {num} chanses")
-    s = input("Insert letter or word ").lower()
-    check(word,s)
+    check(word,s,num)
+    
 
-
-
-start()
+start(num)
